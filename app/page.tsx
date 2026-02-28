@@ -53,11 +53,13 @@ export default function Home() {
                 }}
               >
                 <div className="flex-1 min-w-0">
-                  <h2 className="text-xl sm:text-3xl font-bold leading-tight mb-0.5" style={{ color: '#c1882c' }}>Kairali Ayurvedic Group</h2>
-                  <h3 className="text-base sm:text-xl font-bold mb-0.5 sm:mb-1 leading-tight" style={{ color: '#21606b' }}>
-                    Media & Download Center
+                  <h3 className="font-bold leading-tight mb-0.5" style={{ color: '#c1882c', fontSize: '14px' }}>
+                    Kairali Ayurvedic Group
                   </h3>
-                  <p className="text-[11px] sm:text-sm text-gray-700 leading-relaxed">
+                  <h4 className="font-bold leading-tight mb-1" style={{ color: '#21606b', fontSize: '12px' }}>
+                    Media & Download Center
+                  </h4>
+                  <p className="leading-relaxed" style={{ color: '#374151', fontSize: '8px' }}>
                     Access brochures, price lists, photo galleries, video tours, and official documents for all Kairali Group brands — in one place.
                   </p>
                 </div>

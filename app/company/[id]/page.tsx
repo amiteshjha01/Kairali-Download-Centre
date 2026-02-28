@@ -116,11 +116,11 @@ export default function CompanyPage() {
                     >
                       {c.name}
                     </span>
-                    {c.id === id && (
+                    {/* {c.id === id && (
                       <span className="ml-auto text-xs font-bold px-2 py-0.5 rounded" style={{ backgroundColor: '#21606b', color: '#fff' }}>
                         Active
                       </span>
-                    )}
+                    )} */}
                   </button>
                 ))}
               </div>

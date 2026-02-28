@@ -126,7 +126,7 @@ export default function Home() {
                 <div
                   key={company.id}
                   onClick={() => handleCompanyClick(company.id)}
-                  className="border border-gray-100 rounded bg-white flex flex-col items-center text-center p-4 sm:p-6 cursor-pointer hover:border-teal-300 hover:shadow-md transition-all"
+                  className="group border border-gray-100 rounded bg-white hover:bg-[#21606b] flex flex-col items-center text-center p-4 sm:p-6 cursor-pointer hover:border-[#21606b] hover:shadow-md transition-all duration-200"
                 >
                   <div className="w-20 h-20 sm:w-24 sm:h-24 mb-2 sm:mb-3 flex items-center justify-center flex-shrink-0">
                     <img
@@ -136,26 +136,32 @@ export default function Home() {
                     />
                   </div>
 
-                  {/* 5. Divider full width */}
-                  <div className="w-full h-px bg-gray-300 mb-2 sm:mb-3"></div>
+                  <div className="w-full h-px bg-gray-300 group-hover:bg-white/40 mb-2 sm:mb-3 transition-colors"></div>
 
-                  <h4 style={{ fontSize: '11px' }} className="sm:text-xs font-bold text-gray-800 mb-1 sm:mb-2 leading-tight">{company.name}</h4>
-                  <p style={{ fontSize: '11px' }} className="sm:text-xs text-gray-500 mb-3 sm:mb-4 line-clamp-2">{company.description}</p>
+                  <h4
+                    className="font-bold text-gray-800 group-hover:text-white mb-1 sm:mb-2 leading-tight transition-colors"
+                    style={{ fontSize: '11px' }}
+                  >
+                    {company.name}
+                  </h4>
+                  <p
+                    className="text-gray-500 group-hover:text-white/80 mb-3 sm:mb-4 line-clamp-2 transition-colors"
+                    style={{ fontSize: '11px' }}
+                  >
+                    {company.description}
+                  </p>
 
-                  {/* Button - whitespace-nowrap to prevent wrapping */}
                   <span
-                    className="text-white py-1.5 sm:py-2 px-2 sm:px-4 rounded font-bold flex items-center justify-center gap-1 sm:gap-2 transition-colors mt-auto w-full whitespace-nowrap"
-                    style={{ backgroundColor: '#21606b', fontSize: '10px' }}
+                    className="text-white bg-[#21606b] group-hover:bg-white group-hover:text-[#21606b] py-1.5 sm:py-2 px-2 sm:px-4 rounded font-bold flex items-center justify-center gap-1 sm:gap-2 mt-auto w-full whitespace-nowrap transition-all duration-200"
+                    style={{ fontSize: '10px' }}
                   >
                     View & Download
                     <span style={{
-                      width: 0,
-                      height: 0,
+                      width: 0, height: 0,
                       borderTop: '4px solid transparent',
                       borderBottom: '4px solid transparent',
-                      borderLeft: '6px solid white',
-                      display: 'inline-block',
-                      flexShrink: 0
+                      borderLeft: '6px solid currentColor',
+                      display: 'inline-block', flexShrink: 0
                     }} />
                   </span>
                 </div>

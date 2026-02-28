@@ -116,11 +116,11 @@ export default function CompanyPage() {
                     >
                       {c.name}
                     </span>
-                    {/* {c.id === id && (
+                    {c.id === id && (
                       <span className="ml-auto text-xs font-bold px-2 py-0.5 rounded" style={{ backgroundColor: '#21606b', color: '#fff' }}>
                         Active
                       </span>
-                    )} */}
+                    )}
                   </button>
                 ))}
               </div>
@@ -194,20 +194,32 @@ export default function CompanyPage() {
                         <p className="text-[11px] sm:text-xs font-bold text-gray-800 truncate">{doc.title}</p>
                       </div>
                       <div className="flex items-center gap-1 flex-shrink-0 ml-2">
-                        <button
-                          className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                          title="View"
-                          onClick={() => handleView(doc.url)}
-                        >
-                          <Eye size={16} className="text-gray-500" />
-                        </button>
-                        <button
-                          className="p-2 hover:bg-gray-100 rounded-full transition-colors"
-                          title="Download"
-                          onClick={() => handleDownload(doc.url, doc.title)}
-                        >
-                          <Download size={16} className="text-gray-500" />
-                        </button>
+                        <div className="relative group/btn">
+                          <button
+                            className="p-2 rounded-full transition-colors"
+                            style={{ backgroundColor: '#21606b' }}
+                            onClick={() => handleView(doc.url)}
+                          >
+                            <Eye size={16} className="text-white" />
+                          </button>
+                          <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 text-white text-[10px] font-medium rounded whitespace-nowrap opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none z-10" style={{ backgroundColor: '#21606b' }}>
+                            View PDF
+                            <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent" style={{ borderTopColor: '#21606b' }}></span>
+                          </span>
+                        </div>
+                        <div className="relative group/btn">
+                          <button
+                            className="p-2 rounded-full transition-colors"
+                            style={{ backgroundColor: '#21606b' }}
+                            onClick={() => handleDownload(doc.url, doc.title)}
+                          >
+                            <Download size={16} className="text-white" />
+                          </button>
+                          <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 px-2 py-1 text-white text-[10px] font-medium rounded whitespace-nowrap opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none z-10" style={{ backgroundColor: '#21606b' }}>
+                            Download
+                            <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent" style={{ borderTopColor: '#21606b' }}></span>
+                          </span>
+                        </div>
                       </div>
                     </div>
                   ))}

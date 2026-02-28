@@ -43,32 +43,38 @@ export default function Home() {
             {/* ── TEAL SECTION ── */}
             <div className="px-4 py-4 sm:p-6 lg:p-8 overflow-visible" style={{ backgroundColor: '#21606b' }}>
 
-              {/* 2. White pill card — rounded left, extends to right edge */}
+              {/* White pill card */}
               <div
-                className="bg-white pl-14 sm:pl-14 flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6 overflow-hidden -mr-4 sm:-mr-6 lg:-mr-8 sm:ml-0"
-                style={{
-                  borderRadius: '999px 0 0 999px',
-                  paddingTop: '10px',
-                  paddingBottom: '10px'
-                }}
+                className="bg-white pl-8 sm:pl-14 pr-0 mb-5 sm:mb-6 overflow-hidden -mr-4 sm:-mr-6 lg:-mr-8"
+                style={{ borderRadius: '999px 0 0 999px', paddingTop: '10px', paddingBottom: '10px' }}
               >
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-bold leading-tight mb-0.5" style={{ color: '#c1882c', fontSize: '14px' }}>
-                    Kairali Ayurvedic Group
-                  </h3>
-                  <h4 className="font-bold leading-tight mb-1" style={{ color: '#21606b', fontSize: '12px' }}>
-                    Media & Download Center
-                  </h4>
-                  <p className="leading-relaxed" style={{ color: '#374151', fontSize: '8px' }}>
-                    Access brochures, price lists, photo galleries, video tours, and official documents for all Kairali Group brands — in one place.
-                  </p>
-                </div>
-                <div className="w-20 h-20 sm:w-36 sm:h-36 flex-shrink-0 flex items-center justify-center self-stretch">
-                  <img
-                    src="/icons.png"
-                    alt="Media Center Illustration"
-                    className="w-full h-full object-contain"
-                  />
+                {/* Row 1: heading - clamp so it never overflows or wraps awkwardly */}
+                <h2
+                  className="font-bold leading-tight mb-1 pr-4 sm:pr-8"
+                  style={{ color: '#c1882c', fontSize: 'clamp(15px, 4.5vw, 30px)' }}
+                >
+                  Kairali Ayurvedic Group
+                </h2>
+
+                {/* Row 2: text + illustration */}
+                <div className="flex items-center gap-3 sm:gap-6">
+                  <div className="flex-1 min-w-0">
+                    <h3
+                      className="font-bold leading-tight mb-1"
+                      style={{ color: '#21606b', fontSize: 'clamp(11px, 3vw, 20px)' }}
+                    >
+                      Media & Download Center
+                    </h3>
+                    <p
+                      className="text-gray-600 leading-relaxed"
+                      style={{ fontSize: 'clamp(10px, 2.2vw, 14px)' }}
+                    >
+                      Access brochures, price lists, photo galleries, video tours, and official documents for all Kairali Group brands — in one place.
+                    </p>
+                  </div>
+                  <div className="w-16 h-16 sm:w-36 sm:h-36 flex-shrink-0 self-center">
+                    <img src="/icons.png" alt="Illustration" className="w-full h-full object-contain" />
+                  </div>
                 </div>
               </div>
 
@@ -133,23 +139,21 @@ export default function Home() {
                   {/* 5. Divider full width */}
                   <div className="w-full h-px bg-gray-300 mb-2 sm:mb-3"></div>
 
-                  <h4 className="text-[11px] sm:text-xs font-bold text-gray-800 mb-1 sm:mb-2 leading-tight">{company.name}</h4>
+                  <h4 style={{ fontSize: '11px' }} className="sm:text-xs font-bold text-gray-800 mb-1 sm:mb-2 leading-tight">{company.name}</h4>
+                  <p style={{ fontSize: '11px' }} className="sm:text-xs text-gray-500 mb-3 sm:mb-4 line-clamp-2">{company.description}</p>
 
-                  {/* 4. Tagline visible on mobile too — removed hidden sm:block */}
-                  <p className="text-[11px] sm:text-xs text-gray-500 mb-3 sm:mb-4 line-clamp-2">{company.description}</p>
-
-                  {/* 4. Always show "View & Download", arrow ">" */}
+                  {/* Button - whitespace-nowrap to prevent wrapping */}
                   <span
-                    className="text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded text-xs font-bold flex items-center justify-center gap-2 transition-colors mt-auto w-full"
-                    style={{ backgroundColor: '#21606b' }}
+                    className="text-white py-1.5 sm:py-2 px-2 sm:px-4 rounded font-bold flex items-center justify-center gap-1 sm:gap-2 transition-colors mt-auto w-full whitespace-nowrap"
+                    style={{ backgroundColor: '#21606b', fontSize: '10px' }}
                   >
                     View & Download
                     <span style={{
                       width: 0,
                       height: 0,
-                      borderTop: '5px solid transparent',
-                      borderBottom: '5px solid transparent',
-                      borderLeft: '8px solid white',
+                      borderTop: '4px solid transparent',
+                      borderBottom: '4px solid transparent',
+                      borderLeft: '6px solid white',
                       display: 'inline-block',
                       flexShrink: 0
                     }} />

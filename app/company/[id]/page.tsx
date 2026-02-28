@@ -6,7 +6,7 @@ const dmSans = DM_Sans({ subsets: ['latin'], weight: ['400', '500', '700'] });
 
 import { useParams, useRouter } from "next/navigation";
 import { companiesData, getCompanyById } from "@/lib/companies-data";
-import { Eye, Download, Search, Twitter, Instagram, Youtube, Facebook, Phone, BarChart3 } from "lucide-react";
+import { Eye, Download, Search, ChevronDown, Twitter, Instagram, Youtube, Facebook, Phone, BarChart3 } from "lucide-react";
 import Link from "next/link";
 
 const companyLogos: Record<string, string> = {
@@ -36,6 +36,7 @@ export default function CompanyPage() {
   const id = params.id as string;
   const company = getCompanyById(id);
   const [searchTerm, setSearchTerm] = useState("");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   if (!company) {
     return (
@@ -76,30 +77,62 @@ export default function CompanyPage() {
 
         <div className="shadow-lg overflow-hidden bg-white">
 
-          {/* ── TAB NAVIGATION ── */}
-          <div className="flex border-b border-gray-200 overflow-x-auto">
-            {companiesData.map((c) => (
-              <button
-                key={c.id}
-                onClick={() => router.push(`/company/${c.id}`)}
-                className="flex-1 min-w-0 px-2 py-2.5 text-[10px] sm:text-xs font-bold text-center transition-colors whitespace-normal leading-tight"
-                style={{
-                  backgroundColor: c.id === id ? '#21606b' : '#f3f4f6',
-                  color: c.id === id ? '#ffffff' : '#6b7280',
-                  borderRight: '1px solid #e5e7eb',
-                }}
-              >
-                {c.name}
-              </button>
-            ))}
+          {/* ── CHANGE COMPANY BAR ── */}
+          <div className="relative">
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="w-full py-3 sm:py-4 flex items-center justify-center gap-2 font-bold tracking-widest uppercase text-white text-sm sm:text-base transition-colors"
+              style={{ backgroundColor: '#21606b' }}
+            >
+              Change Company
+              <ChevronDown
+                size={18}
+                className="transition-transform duration-200"
+                style={{ transform: dropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+              />
+            </button>
+
+            {/* Dropdown */}
+            {dropdownOpen && (
+              <div className="absolute top-full left-0 right-0 z-30 bg-white border border-gray-200 shadow-xl">
+                {companiesData.map((c) => (
+                  <button
+                    key={c.id}
+                    onClick={() => {
+                      router.push(`/company/${c.id}`);
+                      setDropdownOpen(false);
+                    }}
+                    className="w-full flex items-center gap-3 px-5 py-3 hover:bg-teal-50 transition-colors border-b border-gray-100 last:border-b-0"
+                    style={c.id === id ? { backgroundColor: '#f0f9fa' } : {}}
+                  >
+                    <img
+                      src={companyLogos[c.id]}
+                      alt={c.name}
+                      className="w-8 h-8 object-contain flex-shrink-0"
+                    />
+                    <span
+                      className="text-sm font-bold text-left"
+                      style={{ color: c.id === id ? '#21606b' : '#374151' }}
+                    >
+                      {c.name}
+                    </span>
+                    {/* {c.id === id && (
+                      <span className="ml-auto text-xs font-bold px-2 py-0.5 rounded" style={{ backgroundColor: '#21606b', color: '#fff' }}>
+                        Active
+                      </span>
+                    )} */}
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Amber divider */}
-          <div className="mt-1 h-0.5" style={{ backgroundColor: '#c1882c' }}></div>
+          <div className="h-0.5" style={{ backgroundColor: '#c1882c' }}></div>
 
-          {/* ── LOGO (centered, compact) ── */}
-          <div className="bg-white px-4 sm:px-6 pt-3 sm:pt-4 pb-1 sm:pb-2 flex flex-col items-center justify-center">
-            <div className="w-24 h-24 sm:w-36 sm:h-36 flex items-center justify-center">
+          {/* ── LOGO (centered) ── */}
+          <div className="bg-white px-4 sm:px-6 pt-4 sm:pt-6 pb-2 sm:pb-3 flex flex-col items-center justify-center">
+            <div className="w-28 h-28 sm:w-40 sm:h-40 flex items-center justify-center">
               <img
                 src={companyLogos[id] || '/placeholder-logo.png'}
                 alt={company.name}

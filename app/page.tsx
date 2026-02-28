@@ -60,7 +60,7 @@ export default function Home() {
                     Media & Download Center
                   </h3>
                   {/* 2. Paragraph -1px on mobile: text-[11px] instead of text-xs */}
-                  <p className="text-[11px] sm:text-sm text-gray-700 leading-relaxed">
+                  <p className="text-[9px] sm:text-sm text-gray-700 leading-relaxed">
                     Access brochures, price lists, photo galleries, video tours, and official documents for all Kairali Group brands — in one place.
                   </p>
                 </div>

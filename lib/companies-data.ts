@@ -30,7 +30,7 @@ export interface Company {
 export const companiesData: Company[] = [
   {
     id: "kairali",
-    name: "Kairali - The Ayurvedic Healing Village",
+    name: "KTAHV",
     shortName: "Kairali",
     tagline: "The Ayurvedic Healing Village",
     description: "Authentic Ayurvedic retreat in lush greenery",
@@ -120,7 +120,7 @@ export const companiesData: Company[] = [
 
   {
     id: "products",
-    name: "Kairali Ayurvedic Products",
+    name: "KAPPL",
     shortName: "Kairali Products",
     tagline: "Premium Ayurvedic formulations for health & wellness",
     description: "High-quality health & wellness products",
@@ -252,7 +252,7 @@ export const companiesData: Company[] = [
 
   {
     id: "centre",
-    name: "Kairali Ayurvedic Centre",
+    name: "KAC",
     shortName: "Kairali Centre",
     tagline: "Wellness centers offering authentic treatments",
     description: "Panchakarma center offering authentic treatments",

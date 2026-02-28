@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { DM_Sans } from 'next/font/google';
-
 const dmSans = DM_Sans({ subsets: ['latin'], weight: ['400', '500', '700'] });
+
 import { useParams, useRouter } from "next/navigation";
 import { companiesData, getCompanyById } from "@/lib/companies-data";
-import { Eye, Download, Search, ChevronDown, Twitter, Instagram, Youtube, Facebook, Phone, BarChart3 } from "lucide-react";
+import { Eye, Download, Search, Twitter, Instagram, Youtube, Facebook, Phone, BarChart3 } from "lucide-react";
 import Link from "next/link";
 
 const companyLogos: Record<string, string> = {
@@ -36,7 +36,6 @@ export default function CompanyPage() {
   const id = params.id as string;
   const company = getCompanyById(id);
   const [searchTerm, setSearchTerm] = useState("");
-  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   if (!company) {
     return (
@@ -77,60 +76,36 @@ export default function CompanyPage() {
 
         <div className="shadow-lg overflow-hidden bg-white">
 
-          {/* ── HEADER ── */}
-          <div className="bg-white px-4 sm:px-6 py-3 sm:py-4 flex items-start justify-between gap-2 sm:gap-4">
-
-            {/* Left: Company logo — always left aligned */}
-            <div className="flex flex-col items-start">
-              <div className="w-25 h-25 sm:w-[120px] sm:h-[90px] flex items-center justify-start flex-shrink-0">
-                <img
-                  src={companyLogos[id] || '/placeholder-logo.png'}
-                  alt={company.name}
-                  className="w-20 h-20 sm:w-[100px] sm:h-[100px] object-contain"
-                />
-              </div>
-              {/* Tagline — commented for now, enable when needed */}
-              {/* <p className="text-xs sm:text-sm font-medium text-left mt-1" style={{ color: '#c1882c' }}>
-                {company.tagline}
-              </p> */}
-            </div>
-
-            {/* Right: Change Company button */}
-            <div className="flex flex-col items-end gap-1 pt-1">
-              <div className="relative">
-                <button
-                  onClick={() => setDropdownOpen(!dropdownOpen)}
-                  className="text-white text-xs font-bold px-3 py-2 rounded flex items-center gap-1"
-                  style={{ backgroundColor: '#21606b' }}
-                >
-                  Change Company
-                  <ChevronDown size={12} />
-                </button>
-                {dropdownOpen && (
-                  <div className="absolute right-0 top-full mt-1 w-52 bg-white border border-gray-200 rounded-lg shadow-xl z-20">
-                    {companiesData.map((c) => (
-                      <button
-                        key={c.id}
-                        onClick={() => { router.push(`/company/${c.id}`); setDropdownOpen(false); }}
-                        className={`w-full text-left px-4 py-3 text-xs hover:bg-teal-50 transition-colors first:rounded-t-lg last:rounded-b-lg ${c.id === id ? 'font-bold' : 'text-gray-700'}`}
-                        style={c.id === id ? { color: '#21606b' } : {}}
-                      >
-                        {c.name}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
+          {/* ── TAB NAVIGATION ── */}
+          <div className="flex border-b border-gray-200 overflow-x-auto">
+            {companiesData.map((c) => (
+              <button
+                key={c.id}
+                onClick={() => router.push(`/company/${c.id}`)}
+                className="flex-1 min-w-0 px-2 py-2.5 text-[10px] sm:text-xs font-bold text-center transition-colors whitespace-normal leading-tight"
+                style={{
+                  backgroundColor: c.id === id ? '#21606b' : '#f3f4f6',
+                  color: c.id === id ? '#ffffff' : '#6b7280',
+                  borderRight: '1px solid #e5e7eb',
+                }}
+              >
+                {c.name}
+              </button>
+            ))}
           </div>
 
-          {/* ── COMPANY NAME + LOCATION + DESCRIPTION ── */}
-          <div className="bg-white px-4 sm:px-6 pt-0 pb-3">
-            <h1 className="text-xl sm:text-2xl font-bold text-gray-700 leading-tight">
-              {company.name}
-            </h1>
-            <p className="text-xs sm:text-sm text-gray-600 mt-0.5">📍 {company.location}</p>
-            <p className="text-xs sm:text-sm text-gray-600 mt-1">{company.description}</p>
+          {/* Amber divider */}
+          <div className="mt-1 h-0.5" style={{ backgroundColor: '#c1882c' }}></div>
+
+          {/* ── LOGO (centered, compact) ── */}
+          <div className="bg-white px-4 sm:px-6 pt-3 sm:pt-4 pb-1 sm:pb-2 flex flex-col items-center justify-center">
+            <div className="w-24 h-24 sm:w-36 sm:h-36 flex items-center justify-center">
+              <img
+                src={companyLogos[id] || '/placeholder-logo.png'}
+                alt={company.name}
+                className="w-full h-full object-contain"
+              />
+            </div>
           </div>
 
           {/* ── BANNER IMAGE ── */}
@@ -149,14 +124,14 @@ export default function CompanyPage() {
 
             <div className="flex items-center gap-2 mb-1 sm:mb-2">
               <BarChart3 className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" style={{ color: '#21606b' }} />
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-700">Documents</h3>
+              <h3 className="text-base sm:text-xl font-bold text-gray-700">Documents</h3>
             </div>
-            <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6">
-              Preview or download official materials for {company.name}.
+            <p className="text-[11px] sm:text-sm text-gray-600 mb-4 sm:mb-6">
+              Preview or download official materials for {company.shortName}.
             </p>
 
             {/* Search bar */}
-            <div className="flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-2.5 mb-3 shadow-sm" style={{ backgroundColor: '#fffbf5' }}>
+            <div className="flex items-center gap-2 border border-gray-200 rounded-lg px-3 py-2.5 mb-3 shadow-sm bg-white">
               <Search size={16} className="text-gray-400 flex-shrink-0" />
               <input
                 type="text"
@@ -171,7 +146,7 @@ export default function CompanyPage() {
             </div>
 
             {/* Documents list */}
-            <div className="border border-gray-100 rounded-lg overflow-hidden shadow-sm mb-4 sm:mb-5" style={{ backgroundColor: '#fffbf5' }}>
+            <div className="border border-gray-100 rounded-lg overflow-hidden shadow-sm mb-4 sm:mb-5 bg-white">
               {filteredDocuments.length > 0 ? (
                 <div className="divide-y divide-gray-100 max-h-72 sm:max-h-96 overflow-y-auto">
                   {filteredDocuments.map((doc) => (
@@ -220,35 +195,35 @@ export default function CompanyPage() {
           </div>
 
           {/* ── FOOTER ── */}
-          <div className="bg-white px-4 sm:px-6 py-3 sm:py-4 flex flex-col items-center gap-2 sm:gap-3">
+          <div className="px-4 sm:px-6 py-3 sm:py-4 flex flex-col items-center gap-2 sm:gap-3" style={{ backgroundColor: '#21606b' }}>
             <div className="flex gap-4 sm:gap-5">
               {company.socialLinks?.instagram && (
-                <a href={company.socialLinks.instagram} target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: '#8e9d35' }}>
+                <a href={company.socialLinks.instagram} target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff' }}>
                   <Instagram size={20} className="sm:w-6 sm:h-6" />
                 </a>
               )}
               {company.socialLinks?.youtube && (
-                <a href={company.socialLinks.youtube} target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: '#8e9d35' }}>
+                <a href={company.socialLinks.youtube} target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff' }}>
                   <Youtube size={20} className="sm:w-6 sm:h-6" />
                 </a>
               )}
               {company.socialLinks?.facebook && (
-                <a href={company.socialLinks.facebook} target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: '#8e9d35' }}>
+                <a href={company.socialLinks.facebook} target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff' }}>
                   <Facebook size={20} className="sm:w-6 sm:h-6" />
                 </a>
               )}
               {company.socialLinks?.twitter && (
-                <a href={company.socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="transition-colors" style={{ color: '#8e9d35' }}>
+                <a href={company.socialLinks.twitter} target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff' }}>
                   <Twitter size={20} className="sm:w-6 sm:h-6" />
                 </a>
               )}
               {company.socialLinks?.phone && (
-                <a href={company.socialLinks.phone} className="transition-colors" style={{ color: '#8e9d35' }}>
+                <a href={company.socialLinks.phone} style={{ color: '#ffffff' }}>
                   <Phone size={20} className="sm:w-6 sm:h-6" />
                 </a>
               )}
             </div>
-            <p style={{ fontSize: '11px', color: 'rgb(0, 0, 0)' }}>
+            <p style={{ fontSize: '11px', color: '#ffffff' }}>
               © 2026 Kairali Ayurvedic Group. All rights reserved.
             </p>
           </div>

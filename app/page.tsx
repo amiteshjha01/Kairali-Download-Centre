@@ -27,27 +27,25 @@ export default function Home() {
 
           <div className="bg-white">
 
-            {/* ── HEADER ── */}
-            <div className="bg-white px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-4">
+            {/* ── HEADER — commented out, text moved to pill card ── */}
+            {/* <div className="bg-white px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-4">
               <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center flex-shrink-0">
                 <img src="/main2.png" alt="Kairali Logo" className="w-12 h-12 sm:w-16 sm:h-16 object-contain" />
               </div>
               <div className="text-right">
                 <h2 className="text-lg sm:text-2xl font-bold leading-tight" style={{ color: '#8e9d35' }}>Kairali Ayurvedic Group</h2>
-                {/* 1. Header paragraph font -1px: was text-xs sm:text-sm, now text-[11px] sm:text-xs */}
                 <p className="text-[11px] sm:text-xs font-medium" style={{ color: '#c1882c' }}>Health through Ayurveda · Since 1990</p>
               </div>
             </div>
 
-            {/* Amber divider */}
-            <div className="h-0.5" style={{ backgroundColor: '#c1882c' }}></div>
+            <div className="h-0.5" style={{ backgroundColor: '#c1882c' }}></div> */}
 
             {/* ── TEAL SECTION ── */}
             <div className="px-4 py-4 sm:p-6 lg:p-8 overflow-visible" style={{ backgroundColor: '#21606b' }}>
 
               {/* 2. White pill card — rounded left, extends to right edge */}
               <div
-                className="bg-white pl-10 sm:pl-10 flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6 overflow-hidden -mr-4 sm:-mr-6 lg:-mr-8 sm:ml-0"
+                className="bg-white pl-14 sm:pl-14 flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6 overflow-hidden -mr-4 sm:-mr-6 lg:-mr-8 sm:ml-0"
                 style={{
                   borderRadius: '999px 0 0 999px',
                   paddingTop: '10px',
@@ -55,12 +53,11 @@ export default function Home() {
                 }}
               >
                 <div className="flex-1 min-w-0">
-                  {/* 2. Font increase on mobile: text-base instead of text-sm */}
-                  <h3 className="text-base sm:text-xl font-bold mb-0.5 sm:mb-1 leading-tight" style={{ color: '#c1882c' }}>
+                  <h2 className="text-xl sm:text-3xl font-bold leading-tight mb-0.5" style={{ color: '#c1882c' }}>Kairali Ayurvedic Group</h2>
+                  <h3 className="text-base sm:text-xl font-bold mb-0.5 sm:mb-1 leading-tight" style={{ color: '#21606b' }}>
                     Media & Download Center
                   </h3>
-                  {/* 2. Paragraph -1px on mobile: text-[11px] instead of text-xs */}
-                  <p className="text-[9px] sm:text-sm text-gray-700 leading-relaxed">
+                  <p className="text-[11px] sm:text-sm text-gray-700 leading-relaxed">
                     Access brochures, price lists, photo galleries, video tours, and official documents for all Kairali Group brands — in one place.
                   </p>
                 </div>
@@ -141,11 +138,19 @@ export default function Home() {
 
                   {/* 4. Always show "View & Download", arrow ">" */}
                   <span
-                    className="text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded text-xs font-bold flex items-center justify-center gap-1 transition-colors mt-auto w-full"
+                    className="text-white py-1.5 sm:py-2 px-3 sm:px-4 rounded text-xs font-bold flex items-center justify-center gap-2 transition-colors mt-auto w-full"
                     style={{ backgroundColor: '#21606b' }}
                   >
                     View & Download
-                    <ChevronRight size={12} />
+                    <span style={{
+                      width: 0,
+                      height: 0,
+                      borderTop: '5px solid transparent',
+                      borderBottom: '5px solid transparent',
+                      borderLeft: '8px solid white',
+                      display: 'inline-block',
+                      flexShrink: 0
+                    }} />
                   </span>
                 </div>
               ))}
@@ -160,15 +165,15 @@ export default function Home() {
         </div>
 
         {/* Footer */}
-        <div className="bg-white shadow-lg px-4 sm:px-6 py-3 sm:py-4 flex flex-col items-center gap-2 sm:gap-3 mb-6 sm:mb-10">
+        <div className="shadow-lg px-4 sm:px-6 py-3 sm:py-4 flex flex-col items-center gap-2 sm:gap-3 mb-6 sm:mb-10" style={{ backgroundColor: '#21606b' }}>
           <div className="flex gap-4 sm:gap-5">
-            <a href="https://www.instagram.com/kairali_the_healing_village/" className="transition-colors" style={{ color: '#8e9d35' }}><Instagram size={20} className="sm:w-6 sm:h-6" /></a>
-            <a href="https://www.youtube.com/user/kairaliayurvedagroup" className="transition-colors" style={{ color: '#8e9d35' }}><Youtube size={20} className="sm:w-6 sm:h-6" /></a>
-            <a href="https://www.facebook.com/KairaliGroup" className="transition-colors" style={{ color: '#8e9d35' }}><Facebook size={20} className="sm:w-6 sm:h-6" /></a>
-            <a href="https://twitter.com/Kairali_Group" className="transition-colors" style={{ color: '#8e9d35' }}><Twitter size={20} className="sm:w-6 sm:h-6" /></a>
-            <a href="tel:+91-9555156156" className="transition-colors" style={{ color: '#8e9d35' }}><Phone size={20} className="sm:w-6 sm:h-6" /></a>
+            <a href="https://www.instagram.com/kairali_the_healing_village/" className="transition-colors" style={{ color: '#ffffff' }}><Instagram size={20} className="sm:w-6 sm:h-6" /></a>
+            <a href="https://www.youtube.com/user/kairaliayurvedagroup" className="transition-colors" style={{ color: '#ffffff' }}><Youtube size={20} className="sm:w-6 sm:h-6" /></a>
+            <a href="https://www.facebook.com/KairaliGroup" className="transition-colors" style={{ color: '#ffffff' }}><Facebook size={20} className="sm:w-6 sm:h-6" /></a>
+            <a href="https://twitter.com/Kairali_Group" className="transition-colors" style={{ color: '#ffffff' }}><Twitter size={20} className="sm:w-6 sm:h-6" /></a>
+            <a href="tel:+91-9555156156" className="transition-colors" style={{ color: '#ffffff' }}><Phone size={20} className="sm:w-6 sm:h-6" /></a>
           </div>
-          <p style={{ fontSize: '11px', color: 'rgb(0, 0, 0)' }}>
+          <p style={{ fontSize: '11px', color: '#ffffff' }}>
             © 2026 Kairali Ayurvedic Group. All rights reserved.
           </p>
         </div>
